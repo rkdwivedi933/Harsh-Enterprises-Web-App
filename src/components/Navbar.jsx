@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaShoppingCart, FaUserCircle } from "react-icons/fa"; // Cart & Profile icons
+import { FaShoppingCart, FaUserCircle } from "react-icons/fa"; 
 import Logo from "../assets/logo.jpg";
 
-function Navbar() {
+function Navbar({ cartCount }) {   // 👈 count props se aayega
   const navigate = useNavigate();
 
   const navItems = [
@@ -20,7 +20,7 @@ function Navbar() {
     <div className="bg-green-700 hover:bg-green-800 shadow-lg shadow-black/30 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 sm:px-6 py-3">
         
-        {/* Logo Section */}
+        {/* Logo */}
         <div
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => navigate("/Home")}
@@ -38,7 +38,7 @@ function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Navigation */}
         <nav className="hidden md:flex items-center gap-6">
           {navItems.map((item) => (
             <Link
@@ -50,12 +50,15 @@ function Navbar() {
             </Link>
           ))}
 
-          {/* Cart Icon */}
+          {/* Cart Icon with dynamic count */}
           <Link to="/cart" className="relative">
             <FaShoppingCart className="text-white text-2xl hover:text-amber-300 transition" />
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
-              3
-            </span>
+            
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1">
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           {/* Profile Icon */}
@@ -64,7 +67,7 @@ function Navbar() {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu */}
         <button className="md:hidden text-white focus:outline-none">
           <i className="fa-solid fa-bars text-2xl"></i>
         </button>

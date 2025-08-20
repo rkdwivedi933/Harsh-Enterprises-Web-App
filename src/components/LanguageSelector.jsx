@@ -2,6 +2,8 @@ import React from 'react';
 import { Label, Select } from "flowbite-react";
 
 function LanguageSelector() {
+  
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-3 ">
       <div className="flex flex-wrap justify-between items-center gap-6">
@@ -63,7 +65,14 @@ function LanguageSelector() {
           <i className="fa-brands fa-facebook" style={{ color: "#1877F2" }}></i>
           <i className="fa-brands fa-square-x-twitter" style={{ color: "#1DA1F2" }}></i>
           <i className="fab fa-linkedin-in" style={{ color: "#0077B5" }}></i>
-          <i className="fa-brands fa-square-whatsapp" style={{ color: "#25D366" }}></i>
+         <a 
+  href="https://wa.me/916261784230"   // Apna number daalo yaha (country code ke sath)
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <i className="fa-brands fa-square-whatsapp" style={{ color: "#25D366", fontSize: "32px" }}></i>
+</a>
+
         </div>
 
       </div>
