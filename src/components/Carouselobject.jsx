@@ -2,8 +2,8 @@ import React from "react";
 import { Carousel } from "flowbite-react";
 
 // Import your local images
-import Car1 from "../assets/carousel.jpg";
-import Car2 from "../assets/carousel2.jpeg";
+import Car1 from "../assets/c1.jpg";
+import Car2 from "../assets/c1.jpg";
 import Car3 from "../assets/download.jpeg";
 
 function Carouselobject() {

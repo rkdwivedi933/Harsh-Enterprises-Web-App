@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
-  // Fake auth state (replace with backend logic later)
+  const navigate = useNavigate();
+
+  // Fake auth state
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    role: "user", // default user
   });
 
   const handleChange = (e) => {
@@ -18,9 +22,15 @@ function ProfilePage() {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    // Simulate signup success
-    setUser({ name: formData.name, email: formData.email });
-    setFormData({ name: "", email: "", password: "" });
+
+    // Fake signup / login (admin check)
+    if (formData.email === "admin@site.com" && formData.password === "admin123") {
+      setUser({ name: formData.name || "Admin", email: formData.email, role: "admin" });
+    } else {
+      setUser({ name: formData.name, email: formData.email, role: "user" });
+    }
+
+    setFormData({ name: "", email: "", password: "", role: "user" });
   };
 
   const handleLogout = () => {
@@ -36,9 +46,23 @@ function ProfilePage() {
             <p className="text-gray-700 mb-2">
               <strong>Name:</strong> {user.name}
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-700 mb-2">
               <strong>Email:</strong> {user.email}
             </p>
+            <p className="text-gray-700 mb-4">
+              <strong>Role:</strong> {user.role}
+            </p>
+
+            {/* Agar admin hai toh Admin Panel button dikhega */}
+            {user.role === "admin" && (
+              <button
+                onClick={() => navigate("/admin")}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg mb-2"
+              >
+                Go to Admin Panel
+              </button>
+            )}
+
             <button
               onClick={handleLogout}
               className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg"
@@ -48,7 +72,7 @@ function ProfilePage() {
           </>
         ) : (
           <>
-            <h2 className="text-2xl font-bold text-center mb-4">Sign Up</h2>
+            <h2 className="text-2xl font-bold text-center mb-4">Login / Sign Up</h2>
             <form onSubmit={handleSignup} className="space-y-4">
               <input
                 type="text"
@@ -57,7 +81,6 @@ function ProfilePage() {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                required
               />
               <input
                 type="email"
@@ -77,13 +100,19 @@ function ProfilePage() {
                 className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 required
               />
+
               <button
                 type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg"
               >
-                Sign Up
+                Login / Sign Up
               </button>
             </form>
+
+            <p className="text-xs text-gray-500 mt-2">
+              *Admin ke liye use karo → <br />
+              Email: <b>admin@site.com</b> | Password: <b>admin123</b>
+            </p>
           </>
         )}
       </div>

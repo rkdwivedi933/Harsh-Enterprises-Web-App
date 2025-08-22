@@ -2,6 +2,7 @@ import React from "react";
  import Zoom from "react-medium-image-zoom"; 
  import "react-medium-image-zoom/dist/styles.css"; 
  import HipsSheet from "../assets/Hips.jpeg";
+import { useNavigate } from "react-router-dom";
 function HipsRoll({ cartItems, setCartItems }) {
 
   const product = {
@@ -37,6 +38,8 @@ function HipsRoll({ cartItems, setCartItems }) {
     }
   };
 
+let navigate = useNavigate();
+
   return (
     <div className="mt-10 p-6 shadow-lg rounded-xl bg-white">
       <h1 className="text-2xl md:text-3xl font-bold text-center text-green-700 mb-8">
@@ -71,7 +74,7 @@ function HipsRoll({ cartItems, setCartItems }) {
             >
               ADD TO CART
             </button>
-            <button className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
+            <button onClick={()=> navigate('/BuyNow')} className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
               BUY NOW
             </button>
           </div>

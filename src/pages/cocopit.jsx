@@ -2,6 +2,7 @@ import React from "react";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 import cocoImg from "../assets/cocopit.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Cocopit({ cartItems, setCartItems }) {
   const product = {
@@ -33,6 +34,8 @@ function Cocopit({ cartItems, setCartItems }) {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
+
+let navigate = useNavigate();
 
   return (
     <div className="mt-10 p-6 shadow-lg rounded-xl bg-white">
@@ -68,7 +71,7 @@ function Cocopit({ cartItems, setCartItems }) {
             >
               ADD TO CART
             </button>
-            <button className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
+            <button onClick={()=> navigate('./BuyNow')} className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
               BUY NOW
             </button>
           </div>

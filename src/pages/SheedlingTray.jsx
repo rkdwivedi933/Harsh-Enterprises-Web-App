@@ -1,5 +1,6 @@
 import React from "react";
 import Zoom from "react-medium-image-zoom";
+import { useNavigate } from "react-router";
 import "react-medium-image-zoom/dist/styles.css";
 import trayimg1 from '../assets/tray3.jpg';
 import trayimg2 from '../assets/tray2.jpg';
@@ -63,6 +64,7 @@ function SheedlingTray({ cartItems, setCartItems }) {
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
+  let navigate = useNavigate();
 
   return (
     <div className="mt-10 space-y-12">
@@ -102,7 +104,7 @@ function SheedlingTray({ cartItems, setCartItems }) {
                 >
                   ADD TO CART
                 </button>
-                <button className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
+                <button onClick={()=> navigate('./BuyNow')} className="w-40 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg shadow-md transition">
                   BUY NOW
                 </button>
               </div>
